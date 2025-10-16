@@ -4,7 +4,7 @@ A simple, single-page web application to help students manage their budget and t
 
 ## Links
 - [Live project](https://michelle493.github.io/student-finance-tracker/)
-- [Demo Video](#)
+- [Demo Video](https://youtu.be/Gzuz_Fb6P48)
 
 ## Features
 
