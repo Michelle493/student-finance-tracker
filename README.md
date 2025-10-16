@@ -1,7 +1,10 @@
 # Student Finance Tracker
 
 A simple, single-page web application to help students manage their budget and track their spending. All data is stored locally in your browser.
-View [live](https://michelle493.github.io/student-finance-tracker/)
+
+## Links
+- [Live project](https://michelle493.github.io/student-finance-tracker/)
+- [Demo Video](#)
 
 ## Features
 
