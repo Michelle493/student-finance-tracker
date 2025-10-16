@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Finance Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-left">
+          <h1>Student Finance Tracker</h1>
+          <p>Manage your budget and track your spendings</p>
+        </div>
+        <div class="header-right">
+          <button class="add-transaction-btn" id="add-transaction-btn">
+            + Add Transaction
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <div class="summary-cards">
+          <div class="card">
+            <div class="card-header">
+              <span>Total Balence</span>
+            </div>
+            <h2 id="total-balance">₦0.00</h2>
+            <p class="percentage" id="balance-percentage"></p>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <span>Monthly Income</span>
+            </div>
+            <h2 id="monthly-income">₦0.00</h2>
+            <p class="percentage" id="income-percentage"></p>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <span>Monthly Expenses</span>
+            </div>
+            <h2 id="monthly-expenses">₦0.00</h2>
+            <p class="percentage" id="expenses-percentage"></p>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <span>Savings Goal</span>
+            </div>
+            <h2 id="savings-goal">₦0.00</h2>
+            <p class="percentage" id="savings-percentage"></p>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <div class="spending-category card">
+            <h3>Spending by Categoory</h3>
+            <div class="chart-container">
+              <canvas id="spending-chart"></canvas>
+            </div>
+          </div>
+
+          <div class="recent-transactions card">
+            <h3>Recent Transctions</h3>
+            <ul id="transaction-list"></ul>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <dialog id="add-transaction-modal">
+      <form id="transaction-form">
+        <h3>Add Transection</h3>
+        <div class="form-group">
+          <label for="type">Type</label>
+          <select id="type" name="type" required>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="description" required />
+        </div>
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" name="amount" required />
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select id="category" name="category" required>
+            <option value="Work">Work</option>
+            <option value="Family">Family</option>
+            <option value="Food & Dining">Food & Dining</option>
+            <option value="Transportation">Transprtation</option>
+            <option value="Books & Supplies">Books & Suplies</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Housing">Housing</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" required />
+        </div>
+        <div class="form-actions">
+          <button type="submit">Add</button>
+          <button type="button" id="cancel-transaction">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="initial-setup-modal">
+      <form id="initial-setup-form">
+        <h3>Welcome!</h3>
+        <p>Lets set up your financial goals.</p>
+        <div class="form-group">
+          <label for="setup-income">Monthly Income Goal</label>
+          <input type="number" id="setup-income" name="setup-income" required />
+        </div>
+        <div class="form-group">
+          <label for="setup-savings">Monthly Savings Goal</label>
+          <input
+            type="number"
+            id="setup-savings"
+            name="setup-savings"
+            required
+          />
+        </div>
+        <div class="form-actions">
+          <button type="submit">Save and Start</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
