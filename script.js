@@ -8,6 +8,7 @@ function main() {
 
   let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
   let goals = JSON.parse(localStorage.getItem("goals")) || {};
+  let spendingChart;
 
   function showModal(modal) {
     modal.showModal();
@@ -20,6 +21,7 @@ function main() {
   function updateUI() {
     updateSummary();
     renderTransactions();
+    renderChart();
   }
 
   function updateSummary() {
@@ -109,6 +111,54 @@ function main() {
       }₦${t.amount.toFixed(2)}</span>
             `;
       transactionList.appendChild(item);
+    });
+  }
+
+  function renderChart() {
+    const ctx = document.getElementById("spending-chart").getContext("2d");
+    const expenseData = transactions
+      .filter((t) => t.type === "expense")
+      .reduce((acc, t) => {
+        acc[t.category] = (acc[t.category] || 0) + t.amount;
+        return acc;
+      }, {});
+
+    const labels = Object.keys(expenseData);
+    const values = Object.values(expenseData);
+
+    function generateColors(n) {
+      return Array.from({ length: n }, (_, i) => {
+        const hue = Math.round((360 * i) / n);
+        return `hsl(${hue}, 65%, 60%)`;
+      });
+    }
+
+    const chartData = {
+      labels,
+      datasets: [
+        {
+          data: values,
+          backgroundColor: generateColors(labels.length),
+        },
+      ],
+    };
+
+    if (spendingChart) {
+      spendingChart.destroy();
+    }
+
+    spendingChart = new Chart(ctx, {
+      type: "pie",
+      data: chartData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: "bottom",
+          },
+        },
+      },
     });
   }
 
